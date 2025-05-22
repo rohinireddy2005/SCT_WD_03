@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharat Quiz - Indian Knowledge Challenge</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            
+            --green: #138808;
+            --blue: #000080;
+            --gold: #FFD700;
+            --silver: #C0C0C0;
+            --bronze: #CD7F32;
+            --red: #FF0000;
+            --pink: #FF6B6B;
+            --purple: #5F27CD;
+            --teal: #1DD1A1;
+            --yellow: #F9CA24;
+            --orange: #F39C12;
+            --dark: #2C3A47;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            background: linear-gradient(135deg, var(--saffron), var(--white), var(--green));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+            filter: blur(1px);
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(50px, 50px);
+            }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--saffron), var(--green), var(--blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--saffron), var(--white), var(--green));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+        
+        h1:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            animation: fadeIn 1.5s ease;
+            color: var(--dark);
+        }
+        
+        .game-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: slideUp 0.8s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .game-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+        
+        .mode-selection {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+            
+        }
+        
+        .mode-btn {
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+            transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+        }
+        
+        .mode-btn:nth-child(1) { background: rgba(var(--saffron), 0.5); }
+        .mode-btn:nth-child(2) { background: rgba(var(--green), 0.5); }
+        .mode-btn:nth-child(3) { background: rgba(var(--blue), 0.5); }
+        .mode-btn:nth-child(4) { background: rgba(var(--gold), 0.5); }
+        
+        .mode-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .category-selection {
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .category-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+        }
+        
+        .category-btn:nth-child(1) { background: rgba(255, 153, 51, 0.3); }
+        .category-btn:nth-child(2) { background: rgba(19, 136, 8, 0.3); }
+        .category-btn:nth-child(3) { background: rgba(0, 0, 128, 0.3);  }
+        .category-btn:nth-child(4) { background: rgba(255, 214, 0, 0.3); }
+        .category-btn:nth-child(5) { background: rgba(255, 107, 107, 0.3); }
+        .category-btn:nth-child(6) { background: rgba(95, 39, 205, 0.3);  }
+        .category-btn:nth-child(7) { background: rgba(29, 209, 161, 0.3); }
+        .category-btn:nth-child(8) { background: rgba(249, 202, 36, 0.3); }
+        
+        .category-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+              transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .mode-btn:active {
+  transform: translateY(1px);
+}
+.mode-btn:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.mode-icon {
+  margin-right: 8px;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+        
+        .quiz-screen {
+            display: none;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 1.2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .question-counter {
+            background: linear-gradient(to right, var(--saffron), var(--green));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .score-display {
+            background: linear-gradient(to right, var(--blue), var(--purple));
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            position: relative;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .score-display::after {
+            content: '★';
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            color: var(--gold);
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .score-display.increased::after {
+            animation: scoreStar 1s ease-out;
+        }
+        
+        @keyframes scoreStar {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-30px) scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        .question-text {
+            font-size: 1.5rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+            animation: fadeIn 0.5s ease;
+            position: relative;
+            background: rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .question-text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+        }
+        
+        .question-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .question-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .option-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+        }
+        
+        .option-btn:nth-child(1) { background: rgba(var(--saffron), 0.5); }
+        .option-btn:nth-child(2) { background: rgba(var(--green), 0.5); }
+        .option-btn:nth-child(3) { background: rgba(var(--blue), 0.5); ; }
+        .option-btn:nth-child(4) { background: rgba(var(--gold), 0.5); }
+        
+        .option-btn:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .option-btn.correct {
+            background: var(--green);
+            color: white;
+            animation: bounce 0.5s ease;
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .option-btn.wrong {
+            background: var(--red);
+            color: white;
+            animation: shake 0.5s ease;
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            20%, 60% {
+                transform: translateX(-5px);
+            }
+            40%, 80% {
+                transform: translateX(5px);
+            }
+        }
+        
+        .lifelines {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+        
+        .lifeline-btn {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--dark);
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            font-weight: 500;
+        }
+        
+        .lifeline-btn:nth-child(1) { background: rgba(255, 107, 107, 0.5); }
+        .lifeline-btn:nth-child(2) { background: rgba(29, 209, 161, 0.5); }
+        .lifeline-btn:nth-child(3) { background: rgba(95, 39, 205, 0.5); color: white; }
+        .lifeline-btn:nth-child(4) { background: rgba(249, 202, 36, 0.5); }
+        
+        .lifeline-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .lifeline-btn:hover:not(:disabled) {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .lifeline-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+        
+        .timer-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timer-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--saffron), var(--green));
+            width: 100%;
+            transition: width 0.1s linear;
+            position: relative;
+            border-radius: 10px;
+        }
+        
+        .timer-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: white;
+            box-shadow: 0 0 5px white;
+        }
+        
+        .result-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+            animation: fadeIn 0.8s ease;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        .result-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--blue);
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, var(--saffron), var(--green));
+            border-radius: 3px;
+        }
+        
+        .result-score {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(to right, var(--gold), var(--silver), var(--bronze));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+        
+        .result-score::before {
+            content: '★';
+            position: absolute;
+            left: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 2rem;
+            opacity: 0;
+            animation: starPulse 2s infinite 0.5s;
+        }
+        
+        .result-score::after {
+            content: '★';
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            font-size: 2rem;
+            opacity: 0;
+            animation: starPulse 2s infinite 1s;
+        }
+        
+        @keyframes starPulse {
+            0%, 100% {
+                opacity: 0.5;
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-50%) scale(1.2);
+            }
+        }
+        
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            width: 100%;
+            margin: 1.5rem 0;
+        }
+        
+        .stat-box {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-box:nth-child(1) { background: rgba(19, 136, 8, 0.3); }
+        .stat-box:nth-child(2) { background: rgba(255, 0, 0, 0.3); }
+        .stat-box:nth-child(3) { background: rgba(255, 153, 51, 0.3); }
+        .stat-box:nth-child(4) { background: rgba(0, 0, 128, 0.3); color: white; }
+        
+        .stat-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--saffron);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-box:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-box:hover .stat-value {
+            transform: scale(1.1);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            color: var(--dark);
+        }
+        
+        .stat-box:hover .stat-label {
+            opacity: 1;
+            transform: translateY(5px);
+        }
+        
+        .restart-btn {
+            background: linear-gradient(to right, var(--saffron), var(--green));
+            border: none;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .restart-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, var(--blue), var(--purple));
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+            border-radius: 50px;
+        }
+        
+        .restart-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .restart-btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--saffron), var(--green));
+            width: 0%;
+            transition: width 0.3s ease;
+            position: relative;
+            border-radius: 10px;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: white;
+            box-shadow: 0 0 5px white;
+        }
+        
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            background-color: var(--saffron);
+            opacity: 0;
+            z-index: 1000;
+            animation: confettiFall 5s linear forwards;
+            border-radius: 50%;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .achievement-badge {
+            position: fixed;
+            top: 20px;
+            right: -300px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border-left: 5px solid var(--gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .achievement-badge.show {
+            right: 20px;
+        }
+        
+        .achievement-badge .badge-icon {
+            color: var(--gold);
+            font-size: 2rem;
+            animation: bounce 0.5s infinite alternate;
+        }
+        
+        .streak-display {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: var(--red);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .score-display.streak-active .streak-display {
+            transform: scale(1);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+        
+        .feedback-text {
+            position: absolute;
+            font-size: 1.5rem;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            animation: feedbackFloat 1s ease-out forwards;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        
+        @keyframes feedbackFloat {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-80px);
+                opacity: 0;
+            }
+        }
+        
+        .correct-feedback {
+            color: var(--green);
+        }
+        
+        .bonus-feedback {
+            color: var(--gold);
+        }
+        
+        .hint-text {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            font-style: italic;
+            animation: fadeIn 0.5s ease;
+            border-left: 4px solid var(--blue);
+        }
+        
+        .cost-display {
+            font-size: 0.8rem;
+            margin-left: 5px;
+            color: var(--red);
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from { 
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .game-container {
+                padding: 1.5rem;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-selection {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .result-score {
+                font-size: 3rem;
+            }
+            
+            .stat-box {
+                padding: 1rem;
+            }
+            
+            .stat-value {
+                font-size: 1.5rem;
+            }
+            
+            .lifelines {
+                flex-direction: column;
+            }
+            
+            .lifeline-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .question-text {
+                font-size: 1.2rem;
+            }
+            
+            .option-btn {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .result-title {
+                font-size: 2rem;
+            }
+            
+            .result-score {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <header>
+        <h1 class="animate__animated animate__fadeInDown">knowledge quest</h1>
+        <p class="subtitle animate__animated animate__fadeIn animate__delay-1s">Test your knowledge about India and its rich culture</p>
+    </header>
+    
+    <div class="game-container">
+        <div class="mode-selection" id="modeSelection">
+            <h2 style="color:crimson">Select Game Mode</h2>
+            <button 
+  class="mode-btn animate__animated animate__fadeIn animate__delay-1s"
+  data-mode="classic"
+  aria-label="Classic Mode with 10 questions about India"
+  tabindex="0"
+>
+  <span class="mode-icon">📜</span>
+  Classic Quiz (10 Questions)
+</button>
+            <button class="mode-btn animate__animated animate__fadeIn animate__delay-2s" data-mode="time">Time Attack (90 Seconds)</button>
+            <button class="mode-btn animate__animated animate__fadeIn animate__delay-3s" data-mode="category">Category Challenge</button>
+            <button class="mode-btn animate__animated animate__fadeIn animate__delay-4s" data-mode="endless">Endless Mode</button>
+        </div>
+        
+        <div class="category-selection" id="categorySelection">
+            <h2 style="grid-column: 1 / -1;" class="animate__animated animate__fadeIn">Select Category</h2>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-1s" data-category="history">
+                <span>🏛️</span> Indian History
+            </button>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-2s" data-category="culture">
+                <span>🎎</span> Indian Culture
+            </button>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-3s" data-category="geography">
+                <span>🗺️</span> Indian Geography
+            </button>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-4s" data-category="politics">
+                <span>🏛️</span> Indian Politics
+            </button>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-1s" data-category="sports">
+                <span>🏏</span> Indian Sports
+            </button>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-2s" data-category="cinema">
+                <span>🎬</span> Bollywood
+            </button>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-3s" data-category="food">
+                <span>🍛</span> Indian Cuisine
+            </button>
+            <button class="category-btn animate__animated animate__fadeIn animate__delay-4s" data-category="random">
+                <span>🎲</span> Random Mix
+            </button>
+        </div>
+        
+        <div class="quiz-screen" id="quizScreen">
+            <div class="question-header">
+                <div class="question-counter" id="questionCounter">Question 1/15</div>
+                <div class="score-display" id="scoreDisplay">Score: 0</div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div class="question-text" id="questionText"></div>
+            <img class="question-image" id="questionImage" style="display: none;">
+            
+            <div class="options-container" id="optionsContainer">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+            
+            <div class="hint-text" id="hintText" style="display: none;"></div>
+            
+            <div class="lifelines">
+                <button class="lifeline-btn" id="fiftyFiftyBtn">
+                    <span>50/50</span>
+                    <span class="cost-display">-25 pts</span>
+                </button>
+                <button class="lifeline-btn" id="hintBtn">
+                    <span>💡 Hint</span>
+                                        <span class="cost-display">-15 pts</span>
+                </button>
+                <button class="lifeline-btn" id="skipBtn">
+                    <span>⏭️ Skip</span>
+                    <span class="cost-display">-10 pts</span>
+                </button>
+                <button class="lifeline-btn" id="timerFreezeBtn">
+                    <span>⏸️ Freeze Time</span>
+                    <span class="cost-display">-20 pts</span>
+                </button>
+            </div>
+            
+            <div class="timer-container">
+                <div class="timer-bar" id="timerBar"></div>
+            </div>
+        </div>
+        
+        <div class="result-screen" id="resultScreen">
+            <h2 class="result-title">Quiz Completed!</h2>
+            <div class="result-score" id="finalScore">0</div>
+            <p id="resultMessage">Great effort! Keep learning about our incredible country.</p>
+            
+            <div class="result-stats">
+                <div class="stat-box">
+                    <div class="stat-value" id="correctAnswers">0</div>
+                    <div class="stat-label">Correct Answers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="wrongAnswers">0</div>
+                    <div class="stat-label">Wrong Answers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="timeTaken">0s</div>
+                    <div class="stat-label">Time Taken</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="streakBonus">0</div>
+                    <div class="stat-label">Streak Bonus</div>
+                </div>
+            </div>
+            
+            <button class="restart-btn" id="restartBtn">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Game state variables
+        let currentMode = '';
+        let currentCategory = '';
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let correctAnswers = 0;
+        let wrongAnswers = 0;
+        let timer;
+        let timeLeft = 0;
+        let totalTime = 0;
+        let questionStartTime = 0;
+        let answerStreak = 0;
+        let maxStreak = 0;
+        let lifelinesUsed = 0;
+        let questionsAnswered = 0;
+        let gameActive = false;
+        let endlessModeQuestions = 0;
+        
+        // DOM elements
+        const modeSelection = document.getElementById('modeSelection');
+        const categorySelection = document.getElementById('categorySelection');
+        const quizScreen = document.getElementById('quizScreen');
+        const resultScreen = document.getElementById('resultScreen');
+        const questionCounter = document.getElementById('questionCounter');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const questionText = document.getElementById('questionText');
+        const questionImage = document.getElementById('questionImage');
+        const optionsContainer = document.getElementById('optionsContainer');
+        const hintText = document.getElementById('hintText');
+        const progressBar = document.getElementById('progressBar');
+        const timerBar = document.getElementById('timerBar');
+        const finalScore = document.getElementById('finalScore');
+        const correctAnswersEl = document.getElementById('correctAnswers');
+        const wrongAnswersEl = document.getElementById('wrongAnswers');
+        const timeTakenEl = document.getElementById('timeTaken');
+        const streakBonusEl = document.getElementById('streakBonus');
+        const resultMessage = document.getElementById('resultMessage');
+        const restartBtn = document.getElementById('restartBtn');
+        const fiftyFiftyBtn = document.getElementById('fiftyFiftyBtn');
+        const hintBtn = document.getElementById('hintBtn');
+        const skipBtn = document.getElementById('skipBtn');
+        const timerFreezeBtn = document.getElementById('timerFreezeBtn');
+        const particlesContainer = document.getElementById('particles');
+        
+        // Question database (in a real app, this would come from an API)
+        const questionDatabase = {
+            history: [
+                {
+                    question: "Who was the first Prime Minister of India?",
+                    options: ["Mahatma Gandhi", "Jawaharlal Nehru", "Indira Gandhi", "Sardar Patel"],
+                    answer: 1,
+                    hint: "He was known as 'Chacha' Nehru and his birthday is celebrated as Children's Day.",
+                    image: "https://upload.wikimedia.org/wikipedia/commons/5/53/Jawaharlal_Nehru_%28cropped%29.jpg"
+                },
+                {
+                    question: "The Indian Rebellion of 1857 started from which city?",
+                    options: ["Delhi", "Kolkata", "Meerut", "Mumbai"],
+                    answer: 2,
+                    hint: "This city is in Uttar Pradesh and was an important military station for the British East India Company."
+                },
+                {
+                    question: "Who was the last Viceroy of India?",
+                    options: ["Lord Mountbatten", "Lord Curzon", "Lord Dalhousie", "Lord Canning"],
+                    answer: 0,
+                    hint: "He oversaw the partition of India and Pakistan in 1947."
+                },
+                {
+                    question: "The ancient university of Nalanda was located in which present-day Indian state?",
+                    options: ["Bihar", "Uttar Pradesh", "Madhya Pradesh", "West Bengal"],
+                    answer: 0,
+                    hint: "This state's capital is Patna and it's known for its Buddhist pilgrimage sites."
+                },
+                {
+                    question: "Who built the Taj Mahal?",
+                    options: ["Akbar", "Shah Jahan", "Aurangzeb", "Jahangir"],
+                    answer: 1,
+                    hint: "He built it in memory of his favorite wife Mumtaz Mahal."
+                }
+            ],
+            culture: [
+                {
+                    question: "Which classical dance form originated in Kerala?",
+                    options: ["Bharatanatyam", "Kathak", "Kathakali", "Odissi"],
+                    answer: 2,
+                    hint: "This dance form is known for its elaborate costumes and facial makeup."
+                },
+                {
+                    question: "The festival of colors, Holi, marks the victory of which deity?",
+                    options: ["Lord Krishna", "Lord Vishnu", "Lord Rama", "Goddess Durga"],
+                    answer: 1,
+                    hint: "It celebrates the victory of good over evil, specifically the story of Prahlad and Holika."
+                },
+                {
+                    question: "Which of these is NOT one of the four Vedas?",
+                    options: ["Rigveda", "Yajurveda", "Atharvaveda", "Ayurveda"],
+                    answer: 3,
+                    hint: "This is actually an ancient Indian system of medicine, not a Veda."
+                },
+                {
+                    question: "The Kumbh Mela is held every how many years?",
+                    options: ["6", "12", "8", "10"],
+                    answer: 1,
+                    hint: "It rotates between four pilgrimage sites in a 12-year cycle."
+                },
+                {
+                    question: "Which language has the highest number of speakers in India after Hindi?",
+                    options: ["Bengali", "Telugu", "Marathi", "Tamil"],
+                    answer: 0,
+                    hint: "This language is primarily spoken in West Bengal and Bangladesh."
+                }
+            ],
+            geography: [
+                {
+                    question: "Which is the longest river in India?",
+                    options: ["Yamuna", "Godavari", "Brahmaputra", "Ganga"],
+                    answer: 3,
+                    hint: "It originates in the Gangotri glacier and flows through several major cities."
+                },
+                {
+                    question: "The Thar Desert is primarily located in which state?",
+                    options: ["Gujarat", "Rajasthan", "Haryana", "Madhya Pradesh"],
+                    answer: 1,
+                    hint: "This state is known as the 'Land of Kings' and its capital is Jaipur."
+                },
+                {
+                    question: "Which of these states does NOT share a border with Nepal?",
+                    options: ["Uttarakhand", "Bihar", "Sikkim", "Assam"],
+                    answer: 3,
+                    hint: "This state is in northeastern India and is known for its tea plantations."
+                },
+                {
+                    question: "The southernmost point of mainland India is:",
+                    options: ["Kanyakumari", "Indira Point", "Rameswaram", "Kochi"],
+                    answer: 0,
+                    hint: "It's where the Arabian Sea, Bay of Bengal, and Indian Ocean meet."
+                },
+                {
+                    question: "Which of these is India's smallest state by area?",
+                    options: ["Goa", "Sikkim", "Tripura", "Nagaland"],
+                    answer: 0,
+                    hint: "This state is famous for its beaches and Portuguese-influenced architecture."
+                }
+            ],
+            politics: [
+                {
+                    question: "Who is known as the 'Father of the Indian Constitution'?",
+                    options: ["Mahatma Gandhi", "Jawaharlal Nehru", "B.R. Ambedkar", "Sardar Patel"],
+                    answer: 2,
+                    hint: "He was India's first Law Minister and fought against social discrimination."
+                },
+                {
+                    question: "The current President of India (as of 2023) is:",
+                    options: ["Pranab Mukherjee", "Ram Nath Kovind", "Droupadi Murmu", "Narendra Modi"],
+                    answer: 2,
+                    hint: "She is the first tribal woman to hold this office."
+                },
+                {
+                    question: "Which article of the Indian Constitution deals with the Right to Equality?",
+                    options: ["Article 14", "Article 19", "Article 21", "Article 32"],
+                    answer: 0,
+                    hint: "This article states that 'The State shall not deny to any person equality before the law.'"
+                },
+                {
+                    question: "The maximum number of members in Lok Sabha can be:",
+                    options: ["545", "550", "552", "555"],
+                    answer: 2,
+                    hint: "This includes 530 from states, 20 from Union Territories, and 2 nominated members."
+                },
+                {
+                    question: "Who was India's first female Prime Minister?",
+                    options: ["Sonia Gandhi", "Indira Gandhi", "Pratibha Patil", "Sarojini Naidu"],
+                    answer: 1,
+                    hint: "She was the daughter of India's first Prime Minister."
+                }
+            ],
+            sports: [
+                {
+                    question: "Which Indian cricketer is known as the 'God of Cricket'?",
+                    options: ["Virat Kohli", "Kapil Dev", "Sachin Tendulkar", "MS Dhoni"],
+                    answer: 2,
+                    hint: "He holds the record for most international runs and centuries."
+                },
+                {
+                    question: "India won its first Olympic gold medal in hockey in which year?",
+                    options: ["1928", "1932", "1936", "1948"],
+                    answer: 0,
+                    hint: "This was at the Amsterdam Olympics under captain Jaipal Singh Munda."
+                },
+                {
+                    question: "Who is the first Indian to win an individual Olympic gold medal?",
+                    options: ["P.V. Sindhu", "Abhinav Bindra", "Sushil Kumar", "Mary Kom"],
+                    answer: 1,
+                    hint: "He won gold in 10m Air Rifle at the 2008 Beijing Olympics."
+                },
+                {
+                    question: "Which Indian badminton player is nicknamed 'The Rock'?",
+                    options: ["Prakash Padukone", "Pullela Gopichand", "Saina Nehwal", "Srikanth Kidambi"],
+                    answer: 3,
+                    hint: "He became World No. 1 in men's singles in 2018."
+                },
+                {
+                    question: "The first Indian Grandmaster in chess was:",
+                    options: ["Vishwanathan Anand", "Dibyendu Barua", "Pentala Harikrishna", "Koneru Humpy"],
+                    answer: 0,
+                    hint: "He became Grandmaster in 1988 and was World Champion multiple times."
+                }
+            ],
+            cinema: [
+                {
+                    question: "Which Bollywood actor is known as 'The King of Bollywood'?",
+                    options: ["Amitabh Bachchan", "Shah Rukh Khan", "Salman Khan", "Aamir Khan"],
+                    answer: 1,
+                    hint: "He's known for films like DDLJ, Kuch Kuch Hota Hai, and Chak De India."
+                },
+                {
+                    question: "The first Indian film to win an Oscar was:",
+                    options: ["Lagaan", "Salaam Bombay", "Mother India", "Gandhi"],
+                    answer: 3,
+                    hint: "This 1982 film won 8 Oscars including Best Picture, but it was a British production."
+                },
+                {
+                    question: "Which of these is NOT a film by Satyajit Ray?",
+                    options: ["Pather Panchali", "Charulata", "Sholay", "Aparajito"],
+                    answer: 2,
+                    hint: "This 1975 film was directed by Ramesh Sippy and is considered a classic."
+                },
+                {
+                    question: "The song 'Jai Ho' is from which Bollywood movie?",
+                    options: ["Slumdog Millionaire", "Ghajini", "Dabangg", "My Name is Khan"],
+                    answer: 0,
+                    hint: "Though the film was British, the song was composed by A.R. Rahman."
+                },
+                {
+                    question: "Who is the first Indian actress to win a BAFTA award?",
+                    options: ["Priyanka Chopra", "Deepika Padukone", "Aishwarya Rai", "Kangana Ranaut"],
+                    answer: 0,
+                    hint: "She won for her role in the TV series Quantico in 2016."
+                }
+            ],
+            food: [
+                {
+                    question: "Which of these dishes originated in the state of Punjab?",
+                    options: ["Biryani", "Butter Chicken", "Dosa", "Vada Pav"],
+                    answer: 1,
+                    hint: "This creamy tomato-based chicken dish was invented in Delhi's Moti Mahal restaurant."
+                },
+                {
+                    question: "The main ingredient in 'Rogan Josh' is:",
+                    options: ["Chicken", "Lamb", "Fish", "Paneer"],
+                    answer: 1,
+                    hint: "This aromatic dish is a signature of Kashmiri cuisine."
+                },
+                {
+                    question: "Which state is famous for 'Dhokla'?",
+                    options: ["Rajasthan", "Gujarat", "Maharashtra", "West Bengal"],
+                    answer: 1,
+                    hint: "This steamed snack is made from fermented rice and chickpea batter."
+                },
+                {
+                    question: "'Pongal' is a festival dish associated with which state?",
+                    options: ["Kerala", "Tamil Nadu", "Karnataka", "Andhra Pradesh"],
+                    answer: 1,
+                    hint: "This dish is also the name of a harvest festival celebrated in January."
+                },
+                {
+                    question: "Which of these is NOT a variety of Indian mango?",
+                    options: ["Alphonso", "Dasheri", "Langra", "Valencia"],
+                    answer: 3,
+                    hint: "This variety is actually from Spain and commonly used for orange juice."
+                }
+            ]
+        };
+        
+        // Initialize the game
+        function initGame() {
+            createParticles();
+            addEventListeners();
+            showModeSelection();
+        }
+        
+        // Create animated particles
+        function createParticles() {
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 15;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${duration}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Add event listeners
+        function addEventListeners() {
+            // Mode selection buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentMode = btn.dataset.mode;
+                    
+                    if (currentMode === 'category') {
+                        showCategorySelection();
+                    } else {
+                        startGame();
+                    }
+                });
+            });
+            
+            // Category selection buttons
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentCategory = btn.dataset.category;
+                    startGame();
+                });
+            });
+            
+            // Lifeline buttons
+            fiftyFiftyBtn.addEventListener('click', useFiftyFifty);
+            hintBtn.addEventListener('click', showHint);
+            skipBtn.addEventListener('click', skipQuestion);
+            timerFreezeBtn.addEventListener('click', freezeTimer);
+            
+            // Restart button
+            restartBtn.addEventListener('click', resetGame);
+        }
+        
+        // Show mode selection screen
+        function showModeSelection() {
+            modeSelection.style.display = 'flex';
+            categorySelection.style.display = 'none';
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'none';
+            
+            // Reset game state
+            resetGameState();
+        }
+        
+        // Show category selection screen
+        function showCategorySelection() {
+            modeSelection.style.display = 'none';
+            categorySelection.style.display = 'grid';
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'none';
+        }
+        
+        // Start the game
+        function startGame() {
+            // Hide other screens
+            modeSelection.style.display = 'none';
+            categorySelection.style.display = 'none';
+            quizScreen.style.display = 'flex';
+            resultScreen.style.display = 'none';
+            
+            // Initialize game state
+            gameActive = true;
+            score = 0;
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            answerStreak = 0;
+            maxStreak = 0;
+            lifelinesUsed = 0;
+            questionsAnswered = 0;
+            endlessModeQuestions = 0;
+            
+            // Prepare questions based on mode
+            prepareQuestions();
+            
+            // Initialize UI
+            updateScoreDisplay();
+            
+            // Start the first question
+            showQuestion();
+            
+            // Start timer if in time attack mode
+            if (currentMode === 'time') {
+                timeLeft = 90; // 90 seconds
+                totalTime = 90;
+                updateTimerDisplay();
+                startTimer();
+            }
+        }
+        
+        // Prepare questions based on game mode
+       // Prepare questions based on game mode
+function prepareQuestions() {
+    questions = [];
+    
+    if (currentMode === 'classic') {
+        // Classic mode - 10 random questions from selected category or all
+        const selectedCategory = currentCategory || getRandomCategory();
+        const allQuestions = [...questionDatabase[selectedCategory]];
+        
+        // If the category doesn't have enough questions, supplement with random ones
+        while (allQuestions.length < 10) {
+            const randomCat = getRandomCategory();
+            if (randomCat !== selectedCategory) {
+                allQuestions.push(...questionDatabase[randomCat]);
+            }
+        }
+        
+        // Shuffle and select 10 questions
+        shuffleArray(allQuestions);
+        questions = allQuestions.slice(0, 10);
+        
+    } else if (currentMode === 'time') {
+        // Time attack - 10 questions from selected category or all
+        const selectedCategory = currentCategory || getRandomCategory();
+        questions = [...questionDatabase[selectedCategory]];
+        
+        // If the category doesn't have enough questions, supplement with random ones
+        if (questions.length < 10) {
+            const randomCat = getRandomCategory();
+            if (randomCat !== selectedCategory) {
+                questions.push(...questionDatabase[randomCat]);
+            }
+        }
+        
+        shuffleArray(questions);
+        questions = questions.slice(0, 10);
+        
+    } else if (currentMode === 'category') {
+        // Category challenge - 10 questions from selected category
+        questions = [...questionDatabase[currentCategory]];
+        shuffleArray(questions);
+        questions = questions.slice(0, 10);
+        
+    } else if (currentMode === 'endless') {
+        // Endless mode - random questions from all categories (but still only 10)
+        const allCategories = Object.keys(questionDatabase);
+        allCategories.forEach(cat => {
+            questions.push(...questionDatabase[cat]);
+        });
+        shuffleArray(questions);
+        questions = questions.slice(0, 10);
+        endlessModeQuestions = 0;
+    }
+    
+    currentQuestionIndex = 0;
+}
+                
+       
+        
+        // Get a random category
+        function getRandomCategory() {
+            const categories = Object.keys(questionDatabase);
+            return categories[Math.floor(Math.random() * categories.length)];
+        }
+        
+        // Shuffle array (Fisher-Yates algorithm)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        // Show current question
+        function showQuestion() {
+            if (!gameActive) return;
+            
+            // Reset lifelines for new question
+            fiftyFiftyBtn.disabled = false;
+            hintBtn.disabled = false;
+            skipBtn.disabled = false;
+            timerFreezeBtn.disabled = false;
+            hintText.style.display = 'none';
+            
+            // Check if we have questions left
+            if (currentMode === 'endless') {
+                // In endless mode, we can keep going until the player quits
+                if (currentQuestionIndex >= questions.length) {
+                    // If we've used all questions, reshuffle and start over
+                    prepareQuestions();
+                }
+            } else if (currentQuestionIndex >= questions.length) {
+                // Game over for other modes
+                endGame();
+                return;
+            }
+            
+            const question = questions[currentQuestionIndex];
+            
+           if (currentMode === 'endless') {
+    endlessModeQuestions++;
+    questionCounter.textContent = `Question ${endlessModeQuestions}/10`;
+} else {
+    questionCounter.textContent = `Question ${currentQuestionIndex + 1}/10`;
+}
+           
+           
+            // Update progress bar
+            if (currentMode === 'endless') {
+                progressBar.style.width = '100%';
+            } else {
+                progressBar.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+            }
+            
+            // Display question
+            questionText.textContent = question.question;
+            
+            // Display image if available
+            if (question.image) {
+                questionImage.src = question.image;
+                questionImage.style.display = 'block';
+            } else {
+                questionImage.style.display = 'none';
+            }
+            
+            // Display options
+            optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionBtn = document.createElement('button');
+                optionBtn.classList.add('option-btn');
+                optionBtn.textContent = option;
+                optionBtn.dataset.index = index;
+                optionBtn.addEventListener('click', () => selectAnswer(index));
+                optionsContainer.appendChild(optionBtn);
+            });
+            
+            // Record start time for time-based scoring
+            questionStartTime = Date.now();
+        }
+        
+        // Handle answer selection
+        function selectAnswer(selectedIndex) {
+            if (!gameActive) return;
+            
+            const question = questions[currentQuestionIndex];
+            const optionButtons = document.querySelectorAll('.option-btn');
+            
+            // Disable all options to prevent multiple selections
+            optionButtons.forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            // Mark correct and wrong answers
+            optionButtons[question.answer].classList.add('correct');
+            if (selectedIndex !== question.answer) {
+                optionButtons[selectedIndex].classList.add('wrong');
+                wrongAnswers++;
+                answerStreak = 0;
+                
+                // Show feedback
+                showFeedback('Wrong!', 'red');
+            } else {
+                correctAnswers++;
+                answerStreak++;
+                if (answerStreak > maxStreak) maxStreak = answerStreak;
+                
+                // Calculate score based on time taken (for time attack mode)
+                let pointsEarned = 10;
+                let bonus = 0;
+                
+                if (currentMode === 'time') {
+                    const timeTaken = (Date.now() - questionStartTime) / 1000;
+                    if (timeTaken < 5) bonus = 5;
+                    else if (timeTaken < 10) bonus = 3;
+                    else if (timeTaken < 15) bonus = 1;
+                    
+                    pointsEarned += bonus;
+                }
+                
+                // Streak bonus (for every 3 correct answers in a row)
+                if (answerStreak >= 3) {
+                    const streakBonus = Math.floor(answerStreak / 3) * 5;
+                    pointsEarned += streakBonus;
+                    bonus += streakBonus;
+                    
+                    // Activate streak display
+                    scoreDisplay.classList.add('streak-active');
+                } else {
+                    scoreDisplay.classList.remove('streak-active');
+                }
+                
+                score += pointsEarned;
+                
+                // Show feedback
+                if (bonus > 0) {
+                    showFeedback(`Correct! +${pointsEarned} (${bonus} bonus)`, 'gold');
+                } else {
+                    showFeedback(`Correct! +${pointsEarned}`, 'green');
+                }
+            }
+            
+            // Update score display
+            updateScoreDisplay();
+            
+            // Move to next question after delay
+            setTimeout(() => {
+                currentQuestionIndex++;
+                questionsAnswered++;
+                
+                if (currentMode === 'time' && timeLeft <= 0) {
+                    endGame();
+                } else {
+                    showQuestion();
+                }
+            }, 1500);
+        }
+        
+        // Update score display with animation
+        function updateScoreDisplay() {
+            scoreDisplay.textContent = `Score: ${score}`;
+            scoreDisplay.classList.add('increased');
+            
+            setTimeout(() => {
+                scoreDisplay.classList.remove('increased');
+            }, 1000);
+        }
+        
+        // Show feedback text
+        function showFeedback(text, color) {
+            const feedback = document.createElement('div');
+            feedback.classList.add('feedback-text');
+            feedback.classList.add(`${color}-feedback`);
+            feedback.textContent = text;
+            
+            // Position near the score display
+            const rect = scoreDisplay.getBoundingClientRect();
+            feedback.style.left = `${rect.left + rect.width / 2}px`;
+            feedback.style.top = `${rect.top}px`;
+            
+            document.body.appendChild(feedback);
+            
+            // Remove after animation
+            setTimeout(() => {
+                feedback.remove();
+            }, 1000);
+        }
+        
+        // Use 50/50 lifeline
+        function useFiftyFifty() {
+            if (!gameActive) return;
+            
+            const question = questions[currentQuestionIndex];
+            const optionButtons = document.querySelectorAll('.option-btn');
+            const wrongOptions = [];
+            
+            // Find wrong options
+            optionButtons.forEach((btn, index) => {
+                if (index !== question.answer) {
+                    wrongOptions.push(btn);
+                }
+            });
+            
+            // Randomly remove two wrong options
+            shuffleArray(wrongOptions);
+            wrongOptions.slice(0, 2).forEach(btn => {
+                btn.style.visibility = 'hidden';
+                btn.disabled = true;
+            });
+            
+            // Disable lifeline and deduct points
+            fiftyFiftyBtn.disabled = true;
+            score = Math.max(0, score - 25);
+            updateScoreDisplay();
+            lifelinesUsed++;
+            
+            // Show achievement if first time
+            showAchievement('First Lifeline Used', 'Used your first lifeline!');
+        }
+        
+        // Show hint
+        function showHint() {
+            if (!gameActive) return;
+            
+            const question = questions[currentQuestionIndex];
+            hintText.textContent = question.hint;
+            hintText.style.display = 'block';
+            
+            // Disable lifeline and deduct points
+            hintBtn.disabled = true;
+            score = Math.max(0, score - 15);
+            updateScoreDisplay();
+            lifelinesUsed++;
+        }
+        
+        // Skip question
+        function skipQuestion() {
+            if (!gameActive) return;
+            
+            // Disable lifeline and deduct points
+            skipBtn.disabled = true;
+            score = Math.max(0, score - 10);
+            updateScoreDisplay();
+            lifelinesUsed++;
+            
+            // Move to next question
+            currentQuestionIndex++;
+            questionsAnswered++;
+            showQuestion();
+        }
+        
+        // Freeze timer (for time attack mode)
+        function freezeTimer() {
+            if (!gameActive || currentMode !== 'time') return;
+            
+            // Add 10 seconds to timer
+            timeLeft += 10;
+            updateTimerDisplay();
+            
+            // Disable lifeline and deduct points
+            timerFreezeBtn.disabled = true;
+            score = Math.max(0, score - 20);
+            updateScoreDisplay();
+            lifelinesUsed++;
+            
+            // Show effect
+            timerBar.style.backgroundColor = 'lightblue';
+            setTimeout(() => {
+                timerBar.style.backgroundColor = '';
+            }, 1000);
+        }
+        
+        // Start timer for time attack mode
+        function startTimer() {
+            clearInterval(timer);
+            updateTimerDisplay();
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    endGame();
+                }
+            }, 1000);
+        }
+        
+        // Update timer display
+        function updateTimerDisplay() {
+            if (!gameActive) return;
+            
+            const percentage = (timeLeft / totalTime) * 100;
+            timerBar.style.width = `${percentage}%`;
+            
+            // Change color when time is running low
+            if (timeLeft <= 10) {
+                timerBar.style.background = 'linear-gradient(to right, var(--red), var(--orange))';
+            } else if (timeLeft <= 30) {
+                timerBar.style.background = 'linear-gradient(to right, var(--orange), var(--yellow))';
+            } else {
+                timerBar.style.background = 'linear-gradient(to right, var(--saffron), var(--green))';
+            }
+        }
+        
+        // End the game
+        function endGame() {
+            gameActive = false;
+            clearInterval(timer);
+            
+            // Calculate final score
+            let finalScoreValue = score;
+            
+            // Bonus for time attack mode (remaining time)
+            if (currentMode === 'time') {
+                finalScoreValue += Math.floor(timeLeft * 2);
+            }
+            
+            // Bonus for streaks
+            finalScoreValue += maxStreak * 3;
+            
+            // Update result screen
+            finalScore.textContent = finalScoreValue;
+            correctAnswersEl.textContent = correctAnswers;
+            wrongAnswersEl.textContent = wrongAnswers;
+            
+            // Calculate time taken (for time attack mode)
+            if (currentMode === 'time') {
+                timeTakenEl.textContent = `${90 - timeLeft}s`;
+            } else {
+                timeTakenEl.textContent = 'N/A';
+            }
+            
+            streakBonusEl.textContent = maxStreak;
+            
+            // Set result message based on performance
+            let percentage = (correctAnswers / questionsAnswered) * 100;
+            
+            if (percentage >= 90) {
+                resultMessage.textContent = "Outstanding! You're a true Bharat expert!";
+                createConfetti();
+            } else if (percentage >= 70) {
+                resultMessage.textContent = "Great job! You know India well!";
+                createConfetti();
+            } else if (percentage >= 50) {
+                resultMessage.textContent = "Good effort! Keep learning about India!";
+            } else {
+                resultMessage.textContent = "Nice try! Explore more about India's rich heritage!";
+            }
+            
+            // Show achievements based on performance
+            if (correctAnswers >= 10) {
+                showAchievement('Knowledge Seeker', 'Answered 10+ questions correctly!');
+            }
+            
+            if (maxStreak >= 5) {
+                showAchievement('Hot Streak', 'Got 5 answers in a row correct!');
+            }
+            
+            if (lifelinesUsed === 0 && questionsAnswered >= 10) {
+                showAchievement('Self-Made', 'Completed a 10+ question game without lifelines!');
+            }
+            
+            // Show result screen
+            quizScreen.style.display = 'none';
+            resultScreen.style.display = 'flex';
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random properties
+                const size = Math.random() * 10 + 5;
+                const posX = Math.random() * window.innerWidth;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 2;
+                const color = getRandomColor();
+                
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
+                confetti.style.left = `${posX}px`;
+                confetti.style.backgroundColor = color;
+                confetti.style.animationDelay = `${delay}s`;
+                confetti.style.animationDuration = `${duration}s`;
+                
+                document.body.appendChild(confetti);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, duration * 1000);
+            }
+        }
+        
+        // Get random color for confetti
+        function getRandomColor() {
+            const colors = [
+                'var(--saffron)', 'var(--green)', 'var(--blue)', 
+                'var(--gold)', 'var(--red)', 'var(--purple)',
+                'var(--teal)', 'var(--yellow)', 'var(--orange)'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        
+        // Show achievement badge
+        function showAchievement(title, description) {
+            const badge = document.createElement('div');
+            badge.classList.add('achievement-badge');
+            
+            badge.innerHTML = `
+                <div class="badge-icon">🏆</div>
+                <div>
+                    <div style="font-weight: bold;">${title}</div>
+                    <div style="font-size: 0.8rem;">${description}</div>
+                </div>
+            `;
+            
+            document.body.appendChild(badge);
+            
+            // Show badge
+            setTimeout(() => {
+                badge.classList.add('show');
+                
+                // Hide after delay
+                setTimeout(() => {
+                    badge.classList.remove('show');
+                    
+                    // Remove after animation
+                    setTimeout(() => {
+                        badge.remove();
+                    }, 500);
+                }, 3000);
+            }, 100);
+        }
+        
+        // Reset game state
+        function resetGameState() {
+            currentMode = '';
+            currentCategory = '';
+            questions = [];
+            currentQuestionIndex = 0;
+            score = 0;
+            correctAnswers = 0;
+            wrongAnswers = 0;
+            timer = null;
+            timeLeft = 0;
+            totalTime = 0;
+            questionStartTime = 0;
+            answerStreak = 0;
+            maxStreak = 0;
+            lifelinesUsed = 0;
+            questionsAnswered = 0;
+            gameActive = false;
+            endlessModeQuestions = 0;
+            
+            clearInterval(timer);
+        }
+        
+        // Reset and restart game
+        function resetGame() {
+            resetGameState();
+            
+            if (currentMode === 'category') {
+                showCategorySelection();
+            } else {
+                startGame();
+            }
+        }
+        
+        // Initialize the game when the page loads
+        window.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
